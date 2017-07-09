@@ -16,20 +16,24 @@ from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.abspath(os.path.join(__file__, '..', '..'))
 
-with open(os.path.join(BASE_DIR, "secrets.json")) as f:
-    secrets = json.loads(f.read())
+try:
+    with open(os.path.join(BASE_DIR, "secrets.json")) as f:
+        secrets = json.loads(f.read())
 
-    def get_secret(setting, secrets=secrets):
-        """
-        Get the secret variable or return explicit exception.
-        """
-        try:
-            return secrets[setting]
-        except KeyError:
-            error_msg = "Set the {0} environment variable " \
-                        "in secrets.json".format(setting)
-            raise ImproperlyConfigured(error_msg)
-
+        def get_secret(setting, secrets=secrets):
+            """
+            Get the secret variable or return explicit exception.
+            """
+            try:
+                return secrets[setting]
+            except KeyError:
+                error_msg = "Set the {0} environment variable " \
+                            "in secrets.json".format(setting)
+                raise ImproperlyConfigured(error_msg)
+# Coverage attempts to run this code
+except FileNotFoundError:
+    # TODO(Kevin): Remove this once we figure out a better solution
+    pass
 SECRET_KEY = get_secret("SECRET_KEY")
 DEBUG = False 
 
