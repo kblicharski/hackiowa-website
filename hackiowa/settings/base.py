@@ -40,7 +40,8 @@ try:
     SECRET_KEY = get_secret("SECRET_KEY")
 except NameError:
     # TODO (Kevin): Remove this once we figure out a better solution
-    pass
+    SECRET_KEY = "thisisatemporarysecretkey"
+
 DEBUG = False 
 
 ALLOWED_HOSTS = []
