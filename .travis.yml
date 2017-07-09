@@ -24,6 +24,5 @@ script:
     - git pull origin master
     - export DJANGO_SETTINGS_MODULE=hackiowa.settings.dev
     - flake8 ./ --exclude=compress.py,*/migrations/* --max-complexity=15 --max-line-length=100
-    - python manage.py test
-    - coverage run --source='.'  
+    - coverage run --source='.' manage.py test
     - coverage report
