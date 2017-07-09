@@ -32,9 +32,15 @@ try:
                 raise ImproperlyConfigured(error_msg)
 # Coverage attempts to run this code
 except FileNotFoundError:
-    # TODO(Kevin): Remove this once we figure out a better solution
+    # TODO (Kevin): Remove this once we figure out a better solution
     pass
-SECRET_KEY = get_secret("SECRET_KEY")
+
+# Coverage attempts to run this code
+try:
+    SECRET_KEY = get_secret("SECRET_KEY")
+except NameError:
+    # TODO (Kevin): Remove this once we figure out a better solution
+    pass
 DEBUG = False 
 
 ALLOWED_HOSTS = []
