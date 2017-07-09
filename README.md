@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/kblicharski/hackiowa-website.svg?branch=master)](https://travis-ci.org/kblicharski/hackiowa-website)
+
+
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/kblicharski/hackiowa-website/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
