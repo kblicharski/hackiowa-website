@@ -1,9 +1,8 @@
 import os
-from .base import get_secret
 
 #Use the following live settings to build on Travis CI
 if os.getenv('BUILD_ON_TRAVIS', None):
-    SECRET_KEY = get_secret('SECRET_KEY')
+    SECRET_KEY = "SecretKeyForUseOnTravis"
     DEBUG = False
     TEMPLATE_DEBUG = True
 
