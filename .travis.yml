@@ -14,7 +14,6 @@ env:
     matrix:
         - DJANGO=1.11 DB=mysql
 
-#commands to install dependencies
 install:
     - pip install -r requirements/dev.txt
 
@@ -23,10 +22,8 @@ before_script:
 
 script:
     - git pull origin master
-    - virtualenv ../env -p python3
-    - source ../env/bin/activate
-    - pip install -r requirements/dev.txt
     - export DJANGO_SETTINGS_MODULE=hackiowa.settings.dev
     - flake8 ./ --exclude=compress.py,*/migrations/* --max-complexity=15 --max-line-length=100
-    - coverage run --source='.'  manage.py test
+    - python manage.py test
+    - coverage run --source='.'  
     - coverage report
