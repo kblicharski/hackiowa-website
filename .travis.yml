@@ -1,0 +1,29 @@
+language: python
+
+python:
+    - "3.6"
+
+services: mysql
+
+env:
+    global:
+        - DJANGO_SETTINGS_MODULE="hackiowa.settings.travis_settings"
+        - PYTHONPATH="/home/travis/build/kblicharski/hackiowa-website"
+        - PIP_USE_MIRRORS=true
+    matrix:
+        - DJANGO=1.11 DB=mysql
+
+#commands to install dependencies
+install:
+    - pip install -r requirements/dev.txt
+
+before_script:
+    - mysql -e 'create database travis_ci_db;'
+    - python manage.py syncdb --noinput
+
+script:
+    - git pull origin master
+    - export DJANGO_SETTINGS_MODULE=hackiowa.settings.dev
+    - flake8 ./ --exclude=compress.py,*/migrations/* --max-complexity=15 --max-line-length=100
+    - coverage run --source='.'  manage.py test
+    - coverage report
