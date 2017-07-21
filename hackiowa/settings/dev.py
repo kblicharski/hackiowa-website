@@ -3,8 +3,7 @@ Settings for local development. Specific settings include DEBUG, log level,
 and activation of developer tools. Overrides defaults from base.py.
 """
 
-from .base import * 
-
+from .base import INSTALLED_APPS, MIDDLEWARE INSTALLED_APPS, MIDDLEWARE
 # DEBUG CONFIGURATION
 #
 DEBUG = True
