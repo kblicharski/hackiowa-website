@@ -16,37 +16,23 @@ from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = os.path.abspath(os.path.join(__file__, '..', '..'))
 
-try:
-    with open(os.path.join(BASE_DIR, "secrets.json")) as f:
-        secrets = json.loads(f.read())
+'''
+with open(os.path.join(BASE_DIR, "secrets.json")) as f:
+    secrets = json.loads(f.read())
 
-        def get_secret(setting, secrets=secrets):
-            """
-            Get the secret variable or return explicit exception.
-            """
-            try:
-                return secrets[setting]
-            except KeyError:
-                error_msg = "Set the {0} environment variable " \
-                            "in secrets.json".format(setting)
-                raise ImproperlyConfigured(error_msg)
-# Coverage attempts to run this code
-except FileNotFoundError:
-    # TODO (Kevin): Remove this once we figure out a better solution
-    pass
-
-# Coverage attempts to run this code
-try:
-    SECRET_KEY = get_secret("SECRET_KEY")
-except NameError:
-    # TODO (Kevin): Remove this once we figure out a better solution
-    SECRET_KEY = "thisisatemporarysecretkey"
-
-try:
-    SECRET_KEY = get_secret("SECRET_KEY")
-except ImproperlyConfigured:
-    SECRET_KEY = "thisisatemporarysecretkey"
-
+    def get_secret(setting, secrets=secrets):
+        """
+        Get the secret variable or return explicit exception.
+        """
+        try:
+            return secrets[setting]
+        except KeyError:
+            error_msg = "Set the {0} environment variable " \
+                        "in secrets.json".format(setting)
+            raise ImproperlyConfigured(error_msg)
+'''
+# TODO (Kevin): Figure out how to configure secret keys properly with Travis
+SECRET_KEY = 'temporary'
 
 DEBUG = False 
 
