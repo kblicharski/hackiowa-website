@@ -42,6 +42,12 @@ except NameError:
     # TODO (Kevin): Remove this once we figure out a better solution
     SECRET_KEY = "thisisatemporarysecretkey"
 
+try:
+    SECRET_KEY = get_secret("SECRET_KEY")
+except ImproperlyConfigured:
+    SECRET_KEY = "thisisatemporarysecretkey"
+
+
 DEBUG = False 
 
 ALLOWED_HOSTS = []
